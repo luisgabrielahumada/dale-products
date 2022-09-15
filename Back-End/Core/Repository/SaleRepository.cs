@@ -1,8 +1,10 @@
 ﻿using Common.Infrastructure;
 using Core.Component.Library.SQL;
+using Microsoft.OData.Edm;
 using Services.Database;
 using Services.Interface.Auth;
 using Services.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -20,23 +22,32 @@ namespace Services.Repository.Auth
 
         public int Delete(int id)
         {
-            return new Execute(db, "DB_Sale_Delete",
+            return new Execute(db, "DB_SaleProducts_Delete",
                               new
                               {
-                                  saleId = id,
-                                  isEnalbed = false
+                                  saleProductsId = id,
+                                  isEnabled = false
                               }).Procedure<int>()
                                 .FirstOrDefault();
         }
 
-        public Sale Get(int id)
+        public Tuple<Sale, List<SaleProducts>> Get(int id)
         {
-            return new Execute(db, "DB_Sale_Get",
+            var data = new Execute(db, "DB_Sale_Get",
                               new
                               {
                                   saleId = id,
                               }).Procedure<Sale>()
                                 .FirstOrDefault();
+
+            var item = new Execute(db, "DB_SaleProducts_Get",
+                             new
+                             {
+                                 saleId = id,
+                             }).Procedure<SaleProducts>()
+                               .ToList();
+
+            return Tuple.Create(data, item);
         }
 
 
@@ -71,6 +82,7 @@ namespace Services.Repository.Auth
                                 saleId= request.SaleId,
                                 customerId=request.CustomerId,
                                 isEnabled=request.IsEnabled,
+                                SaleProducts= request.SaleProducts
                             }).Procedure<int>()
                               .FirstOrDefault();
         }

@@ -5,9 +5,9 @@ namespace Services.Interface.Auth
 {
     public interface ISale
     {
-        ServiceResponse<SaleModel> Get(int eventId);
+        ServiceResponse<SaleModel> Get(int id);
         ServiceResponse<SalesModel> List(Pagination pag);
         ServiceResponse<int> Save(SaleModel request);
-        ServiceResponse<int> Delete(int eventId);
+        ServiceResponse<int> Delete(int id);
     }
 }

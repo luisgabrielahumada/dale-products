@@ -9,6 +9,7 @@ namespace Services.Models
         public int CustomerId { get; set; }
         public bool IsEnabled { get; set; }
         public DateTime CreateDate { get; set; }
-        List<SaleProductsModel> SaleProducts { get; set; }
+        public CustomerModel Customer { get; set; }
+        public List<SaleProductsModel> SaleProducts { get; set; }
     }
 }

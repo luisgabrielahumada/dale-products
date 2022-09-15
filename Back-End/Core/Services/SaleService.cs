@@ -24,11 +24,36 @@ namespace Services.Auth
                 if (resp == null)
                     return sr;
 
+                var sale = resp.Item1;
                 sr.Data = new SaleModel
                 {
-                    CustomerId = resp.CustomerId,
-                    IsEnabled = resp.IsEnabled,
-                    SaleId = resp.SaleId,
+                    CustomerId = sale.CustomerId,
+                    IsEnabled = sale.IsEnabled,
+                    SaleId = sale.SaleId,
+                    Customer = new CustomerModel
+                    {
+                        CustomerId = sale.CustomerId,
+                        Identification = sale.Identification,
+                        FirstName = sale.FirstName,
+                        LastName = sale.LastName,
+                        Phone = sale.Phone,
+                        Email = sale.Email
+                    },
+                    SaleProducts = resp.Item2.Select(m => new SaleProductsModel
+                    {
+                        ProductId = m.ProductId,
+                        Quantity = m.Quantity,
+                        SaleProductsId = m.SaleProductsId,
+                        UnitPrice = m.UnitPrice,
+                        IsEnabled = m.IsEnabled,
+                        SaleId = m.SaleId,
+                        Product = new ProductModel
+                        {
+                            Name = m.Name,
+                            Inventory = m.Inventory,
+                        }
+
+                    }).ToList()
                 };
             }
             catch (Exception e)
@@ -52,7 +77,16 @@ namespace Services.Auth
                     {
                         CustomerId = r.CustomerId,
                         IsEnabled = r.IsEnabled,
-                        SaleId = r.SaleId
+                        SaleId = r.SaleId,
+                        Customer = new CustomerModel
+                        {
+                            CustomerId = r.CustomerId,
+                            Identification = r.Identification,
+                            FirstName = r.FirstName,
+                            LastName = r.LastName,
+                            Phone = r.Phone,
+                            Email = r.Email
+                        }
                     }).ToList()
                 };
             }
@@ -73,6 +107,15 @@ namespace Services.Auth
                     CustomerId = request.CustomerId,
                     SaleId = request.SaleId,
                     IsEnabled = request.IsEnabled,
+                    SaleProducts = request.SaleProducts.Select(m => new SaleProducts
+                    {
+                        Quantity = m.Quantity,
+                        ProductId = m.ProductId,
+                        SaleProductsId = m.SaleProductsId,
+                        UnitPrice = m.UnitPrice,
+                        IsEnabled = m.IsEnabled
+                    }).ToList()
+
                 };
                 sr.Data = _db.Save(model);
             }

@@ -49,7 +49,7 @@
                     <Column field="unitPrice" header="Unit Price" :sortable="true" headerStyle="width:14%; min-width:10rem;">
                         <template #body="slotProps">
                             <span class="p-column-title">Unit Price</span>
-                            {{slotProps.data.unitPrice}}
+                            {{formatCurrency(slotProps.data.unitPrice)}}
                         </template>
                     </Column>
 
@@ -134,7 +134,6 @@
             }
         },
         computed: {
-
         },
         created() {
             this.initFilters();
@@ -171,7 +170,6 @@
             },
             save() {
                 this.submitted = true;
-                debugger;
                 if (this.product.name == undefined)
                     return false;
                 return HTTP.post('product/product-process', this.product)

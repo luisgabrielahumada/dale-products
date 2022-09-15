@@ -13,37 +13,37 @@ namespace WebApi.Controllers
     [Route("api/v1/sale")]
     public class SaleController : BaseApiController
     {
-        private readonly ICustomer _process;
-        public SaleController(ICustomer process)
+        private readonly ISale _process;
+        public SaleController(ISale process)
         {
             _process = process;
         }
 
         // POST api/v1/sale/list
         [HttpPost("sale-list")]
-        [ProducesResponseType(typeof(CustomersModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(SalesModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
         public IActionResult List(Pagination pag)
         {
-            return Response(new ApiResponse<CustomersModel>(_process.List(pag)));
+            return Response(new ApiResponse<SalesModel>(_process.List(pag)));
         }
 
         // POST api/v1/sale/sale-process
         [HttpPost("sale-process")]
         [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
-        public IActionResult Save(CustomerModel request)
+        public IActionResult Save(SaleModel request)
         {
             return Response(new ApiResponse<int>(_process.Save(request)));
         }
 
         // GET api/v1/sale/sale-detail
         [HttpGet("sale-detail/{id}")]
-        [ProducesResponseType(typeof(CustomerModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(SaleModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
         public IActionResult GetEvent([FromRoute] int id)
         {
-            return Response(new ApiResponse<CustomerModel>(_process.Get(id)));
+            return Response(new ApiResponse<SaleModel>(_process.Get(id)));
         }
 
         // POST api/v1/sale/sale-delete/{id}

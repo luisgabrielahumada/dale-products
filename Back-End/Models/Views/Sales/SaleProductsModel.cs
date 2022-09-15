@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Services.Models
 {
@@ -11,5 +12,6 @@ namespace Services.Models
         public int Quantity { get; set; }
         public bool IsEnabled { get; set; }
         public DateTime CreateDate { get; set; }
+        public ProductModel Product { get; set; }
     }
 }
