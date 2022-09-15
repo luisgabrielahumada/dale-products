@@ -24,7 +24,7 @@ namespace Services.Repository.Auth
                               new
                               {
                                   productId = id,
-                                  isActive=false,
+                                  isActive = false,
                               }).Procedure<int>()
                                 .FirstOrDefault();
         }
@@ -67,10 +67,11 @@ namespace Services.Repository.Auth
             return new Execute(db, "DB_Product_Save",
                             new
                             {
-                              name= request.Name,
-                              unitPrice=request.UnitPrice,
-                              inventory=request.Inventory,
-                              isActive=request.IsActive
+                                productId = request.ProductId,
+                                name = request.Name,
+                                unitPrice = request.UnitPrice,
+                                inventory = request.Inventory,
+                                isActive = request.IsActive
                             }).Procedure<int>()
                               .FirstOrDefault();
         }

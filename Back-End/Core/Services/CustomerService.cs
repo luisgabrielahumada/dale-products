@@ -33,7 +33,8 @@ namespace Services.Auth
                     Email = resp.Email,
                     CustomerId = resp.CustomerId,
                     IsActive = resp.IsActive,
-                    Phone = resp.Phone
+                    Phone = resp.Phone,
+                    Identification = resp.Identification,
                 };
             }
             catch (Exception e)
@@ -60,7 +61,8 @@ namespace Services.Auth
                         Email = r.Email,
                         CustomerId = r.CustomerId,
                         IsActive = r.IsActive,
-                        Phone = r.Phone
+                        Phone = r.Phone,
+                        Identification = r.Identification,
                     }).ToList()
                 };
             }
@@ -83,7 +85,8 @@ namespace Services.Auth
                     Email = request.Email,
                     CustomerId = request.CustomerId,
                     IsActive = request.IsActive,
-                    Phone = request.Phone
+                    Phone = request.Phone,
+                    Identification = request.Identification,
                 };
                 sr.Data = _db.Save(model);
             }

@@ -34,7 +34,7 @@ namespace Services.Repository.Auth
             return new Execute(db, "DB_Customer_Get",
                               new
                               {
-                                  customerId = id,
+                                  Id = id,
                               }).Procedure<Customer>()
                                 .FirstOrDefault();
         }
@@ -67,12 +67,13 @@ namespace Services.Repository.Auth
             return new Execute(db, "DB_Customer_Save",
                             new
                             {
-                                 customerId=request.CustomerId,
-                                  isActive=request.IsActive,
-                                  firstName=request.FirstName,
-                                  lastName=request.LastName,
-                                  email=request.Email,
-                                  phone=request.Phone,  
+                                customerId = request.CustomerId,
+                                isActive = request.IsActive,
+                                firstName = request.FirstName,
+                                lastName = request.LastName,
+                                email = request.Email,
+                                phone = request.Phone,
+                                identification = request.Identification,
                             }).Procedure<int>()
                               .FirstOrDefault();
         }

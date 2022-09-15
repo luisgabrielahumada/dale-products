@@ -37,9 +37,17 @@
                 menu: [
                     {
                         label: 'Home',
-                        items: [{
-                            label: 'Events', icon: 'pi pi-fw pi-home', to: '/home'
-                        }]
+                        items: [
+                            {
+                            label: 'Customers', icon: 'pi pi-fw pi-home', to: '/home'
+                            },
+                            {
+                                label: 'Products', icon: 'pi pi-fw pi-home', to: '/products'
+                            },
+                            {
+                                label: 'Sales', icon: 'pi pi-fw pi-home', to: '/sales'
+                            }
+                        ]
                     },
                 ]
             }

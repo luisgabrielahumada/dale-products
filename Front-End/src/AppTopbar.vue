@@ -1,7 +1,7 @@
 <template>
 	<div class="layout-topbar">
 		<router-link to="/" class="layout-topbar-logo">
-			<img alt="Logo" src="https://cdn.immunotec.com/docs/images/Immunotec-logo.svg" />
+			<img alt="Logo" src="https://www.dale.com.co/assets/images/logo_dale_oscuro.svg" />
 		</router-link>
 		<button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle">
 			<i class="pi pi-bars"></i>
